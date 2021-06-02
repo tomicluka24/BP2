@@ -1,0 +1,35 @@
+Klub({idklb,imeklb,vlasklb,trenklb,navklb},{idklb})
+Kosarkas({idkos,imekos,przkos,brkos,idklb},{idkos})
+Kosarkas[idklb] ⊆ Klub[idklb]
+null(Kosarkas,idklb) = ⊥
+Takmicenje({idtak,mestak,naztak},{idtak})
+Ucestvuje({idtak,idklb},{idtak+idklb})
+Ucestvuje[idtak] ⊆ Takmicenje[idtak]
+Ucestvuje[idklb] ⊆ Klub[idklb]
+Takmicenje[idtak] ⊆ Ucestvuje[idtak]
+Kup({idtak,brDTrK},{idtak})
+Liga({idtak,brKL,brTL},{idtak})
+Kup[idtak] ⊆ Takmicenje[idtak]
+Liga[idtak] ⊆ Takmicenje[idtak]
+Takmicenje[idtak] ⊆ Kup[idtak] u Liga[idtak]
+Plejmejker({idkos,apg},{idkos})
+Plejmejker[idkos] ⊆ Kosarkas[ikdkos]
+BekSuter({idkos,tppg},{idkos})
+BekSuter[idkos] ⊆ Kosarkas[ikdkos]
+Krilo({idkos,ppg},{idkos})
+Krilo[idkos] ⊆ Kosarkas[ikdkos]
+KrilniCentar({idkos,bpg},{idkos})
+KrilniCentar[idkos] ⊆ Kosarkas[ikdkos]
+Centar({idkos,rpg},{idkos})
+Centar[idkos] ⊆ Kosarkas[ikdkos]
+Kosarkas[idkos] ⊆ Plejmejker[idkos] u BekSuter[idkos] u Krilo[idkos] u KrilniCentar[idkos] u Centar[idkos]
+Trofej({idTrof,nazTrof,idTak,idKlb},{idTrof})
+Trofej[idtak] ⊆ Ucestvuje[idtak]
+Trofej[idklb] ⊆ Ucestvuje[idklb]
+null(Trofej,idTak) = ⊥
+null(Trofej,idKlb) = ⊥
+
+
+
+
+
