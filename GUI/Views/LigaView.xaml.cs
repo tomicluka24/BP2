@@ -22,9 +22,10 @@ namespace GUI.Views
     /// </summary>
     public partial class LigaView : UserControl
     {
-
         KosarkaDbContainerContext _context;
         CollectionViewSource ligaViewSource;
+        CollectionViewSource takmicenjeViewSource;
+
         public LigaView()
         {
             InitializeComponent();
@@ -39,6 +40,7 @@ namespace GUI.Views
             {
                 //Load your data here and assign the result to the CollectionViewSource.
                 ligaViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["ligaViewSource"];
+                takmicenjeViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["takmicenjeViewSource"];
 
                 // Load is an extension method on IQueryable,
                 // defined in the System.Data.Entity namespace.
@@ -48,10 +50,11 @@ namespace GUI.Views
                 // creates entity objects and adds them to the context.
                 _context = new KosarkaDbContainerContext();
                 _context.Takmicenjes.Load();
+                _context.Takmicenjes_Liga.Load();
 
                 // After the data is loaded call the DbSet<T>.Local property
                 // to use the DbSet<T> as a binding source.
-                ligaViewSource.Source = _context.Takmicenjes.Local;
+                ligaViewSource.Source = _context.Takmicenjes_Liga.Local;
             }
         }
 
@@ -68,21 +71,24 @@ namespace GUI.Views
             {
                 try
                 {
-                    takmicenje.NazivTakmicenja = nazivTakmicenjaTextBox.Text;
-                    takmicenje.MestoTakmicenja = mestoTakmicenjaTextBox.Text;
+                    liga.NazivTakmicenja = nazivTakmicenjaTextBox.Text;
+                    liga.MestoTakmicenja = mestoTakmicenjaTextBox.Text;
 
                     liga.BrojKolaLige = Convert.ToInt32(brojKolaLigeTextBox.Text);
                     liga.BrojTimovaUPlayOffuLige = Convert.ToInt32(brojTimovaUPlayOffuLigeTextBox.Text);
 
                     // insert into takmicenja
-                    _context.Takmicenjes.Add(takmicenje);
+                    _context.Takmicenjes.Add(liga);
+                    // insert into kupovi
+                    _context.Takmicenjes_Liga.Add(liga);
                     _context.SaveChanges();
-                    _context.Takmicenjes.Load();
+                    _context.Takmicenjes_Liga.Load();
 
-                    ligaViewSource.Source = _context.Takmicenjes.Local;
+                    ligaViewSource.Source = _context.Takmicenjes_Liga.Local;
                     ligaViewSource.View.Refresh();
 
-                    // insert into ligaovi
+                  //  takmicenjeViewSource.Source = _context.Takmicenjes.Local;
+                  //  takmicenjeViewSource.View.Refresh();
 
                 }
                 catch (Exception)
@@ -114,7 +120,7 @@ namespace GUI.Views
                     _context.SaveChanges();
                     _context.Takmicenjes.Load();
 
-                    ligaViewSource.Source = _context.Takmicenjes.Local;
+                    ligaViewSource.Source = _context.Takmicenjes_Liga.Local;
                     ligaViewSource.View.Refresh();
                 }
                 catch (Exception)
@@ -134,21 +140,27 @@ namespace GUI.Views
             _context = new KosarkaDbContainerContext();
             var current = ligaViewSource.View.CurrentItem as Takmicenje;
 
-            var takmicenje = (from c in _context.Takmicenjes
+            var liga = (from c in _context.Takmicenjes_Liga
                               where c.IdTakmicenja == current.IdTakmicenja
                               select c).FirstOrDefault();
 
-            if (takmicenje != null)
+            if (liga != null)
             {
                 try
                 {
-                    takmicenje.NazivTakmicenja = nazivTakmicenjaTextBox.Text;
-                    takmicenje.MestoTakmicenja = mestoTakmicenjaTextBox.Text;
+                    liga.NazivTakmicenja = nazivTakmicenjaTextBox.Text;
+                    liga.MestoTakmicenja = mestoTakmicenjaTextBox.Text;
+                    liga.BrojKolaLige = Convert.ToInt32(brojKolaLigeTextBox.Text);
+                    liga.BrojTimovaUPlayOffuLige = Convert.ToInt32(brojTimovaUPlayOffuLigeTextBox.Text);
+
                     _context.SaveChanges();
                     _context.Takmicenjes.Load();
 
-                    ligaViewSource.Source = _context.Takmicenjes.Local;
+                    ligaViewSource.Source = _context.Takmicenjes_Liga.Local;
                     ligaViewSource.View.Refresh();
+
+                   // takmicenjeViewSource.Source = _context.Takmicenjes.Local;
+                   // takmicenjeViewSource.View.Refresh();
                 }
                 catch (Exception)
                 {

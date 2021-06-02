@@ -27,7 +27,7 @@ namespace GUI.Views
     {
         KosarkaDbContainerContext _context;
         CollectionViewSource kupViewSource;
-        //CollectionViewSource takmicenjeViewSource;
+        CollectionViewSource takmicenjeViewSource;
 
         public KupView()
         {
@@ -42,6 +42,8 @@ namespace GUI.Views
             {
                 //Load your data here and assign the result to the CollectionViewSource.
                 kupViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["kupViewSource"];
+                takmicenjeViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["takmicenjeViewSource"];
+
 
                 // Load is an extension method on IQueryable,
                 // defined in the System.Data.Entity namespace.
@@ -51,20 +53,13 @@ namespace GUI.Views
                 // creates entity objects and adds them to the context.
                 _context = new KosarkaDbContainerContext();
                 _context.Takmicenjes.Load();
-
-
-                //SqlConnection conn = new SqlConnection("connectionString");
-                //SqlCommand command = new SqlCommand("SELECT * FROM dbo.Takmicenjes_Kup", conn);
-                //conn.ConnectionString = ConfigurationManager.ConnectionStrings["conString"].ToString();
-               // SqlCommand comm = new SqlCommand("SELECT * FROM dbo.Takmicenjes_Kup");
-                //DataSet ds = new DataSet();
-                //SqlDataAdapter da = new SqlDataAdapter(command);
-                //da.Fill(ds);
+                _context.Takmicenjes_Kup.Load();
 
 
                 // After the data is loaded call the DbSet<T>.Local property
                 // to use the DbSet<T> as a binding source.
-                kupViewSource.Source = _context.Takmicenjes.Local;
+                kupViewSource.Source = _context.Takmicenjes_Kup.Local;
+                //takmicenjeViewSource.Source = _context.Takmicenjes.Local;
             }
         }
 
@@ -81,20 +76,24 @@ namespace GUI.Views
             {
                 try
                 {
-                    takmicenje.NazivTakmicenja = nazivTakmicenjaTextBox.Text;
-                    takmicenje.MestoTakmicenja = mestoTakmicenjaTextBox.Text;
+                    kup.NazivTakmicenja = nazivTakmicenjaTextBox.Text;
+                    kup.MestoTakmicenja = mestoTakmicenjaTextBox.Text;
 
                     kup.BrojDanaTrajanjaKupa = Convert.ToInt32(brojDanaTrajanjaKupaTextBox.Text);
 
                     // insert into takmicenja
-                    _context.Takmicenjes.Add(takmicenje);
+                    _context.Takmicenjes.Add(kup);
                     _context.SaveChanges();
-                    _context.Takmicenjes.Load();
+                    // insert into kupovi
+                    _context.Takmicenjes_Kup.Add(kup);
+                    _context.SaveChanges();
+                    _context.Takmicenjes_Kup.Load();
 
-                    kupViewSource.Source = _context.Takmicenjes.Local;
+                    kupViewSource.Source = _context.Takmicenjes_Kup.Local;
                     kupViewSource.View.Refresh();
 
-                    // insert into kupovi
+                   // takmicenjeViewSource.Source = _context.Takmicenjes.Local;
+                    //takmicenjeViewSource.View.Refresh();
                     
                 }
                 catch (Exception)
@@ -126,7 +125,7 @@ namespace GUI.Views
                     _context.SaveChanges();
                     _context.Takmicenjes.Load();
 
-                    kupViewSource.Source = _context.Takmicenjes.Local;
+                    kupViewSource.Source = _context.Takmicenjes_Kup.Local;
                     kupViewSource.View.Refresh();
                 }
                 catch (Exception)
@@ -146,21 +145,28 @@ namespace GUI.Views
             _context = new KosarkaDbContainerContext();
             var current = kupViewSource.View.CurrentItem as Takmicenje;
 
-            var takmicenje = (from c in _context.Takmicenjes
+            var kup = (from c in _context.Takmicenjes_Kup
                               where c.IdTakmicenja == current.IdTakmicenja
                               select c).FirstOrDefault();
 
-            if (takmicenje != null)
+            if (kup != null)
             {
                 try
                 {
-                    takmicenje.NazivTakmicenja = nazivTakmicenjaTextBox.Text;
-                    takmicenje.MestoTakmicenja = mestoTakmicenjaTextBox.Text;
+                    kup.NazivTakmicenja = nazivTakmicenjaTextBox.Text;
+                    kup.MestoTakmicenja = mestoTakmicenjaTextBox.Text;
+
+                    kup.BrojDanaTrajanjaKupa = Convert.ToInt32(brojDanaTrajanjaKupaTextBox.Text);
+
                     _context.SaveChanges();
                     _context.Takmicenjes.Load();
 
-                    kupViewSource.Source = _context.Takmicenjes.Local;
+                   
+                    kupViewSource.Source = _context.Takmicenjes_Kup.Local;
                     kupViewSource.View.Refresh();
+
+                    //takmicenjeViewSource.Source = _context.Takmicenjes.Local;
+                   // takmicenjeViewSource.View.Refresh();
                 }
                 catch (Exception)
                 {
