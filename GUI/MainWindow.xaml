@@ -48,27 +48,27 @@
                 </TabItem>
                 <TabItem Header="Plejmejkeri" Margin="-3,156.8,3.4,-159"  HorizontalAlignment="Right" Width="86">
                     <Grid>
-                        <!--<views:PlejmejkerView x:Name="Plejmejkeri"/>-->
+                        <views:PlejmejkerView x:Name="Plejmejkeri"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Bek suteri" Margin="0,171,0.4,-173"  HorizontalAlignment="Right" Width="86">
                     <Grid>
-                        <!--<views:BekSuteriView x:Name="BekSuteri"/>-->
+                        <views:BekSuterView x:Name="BekSuteri"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Krila" Margin="0,180,-0.6,-182.2"  HorizontalAlignment="Right" Width="86">
                     <Grid>
-                        <!--<views:KrilaView x:Name="Krila"/>-->
+                        <views:KriloView x:Name="Krila"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Krilni centri" Margin="0,188,0.4,-189"  HorizontalAlignment="Right" Width="86">
                     <Grid>
-                        <!--<views:KrilniCentriView x:Name="KrilniCentri"/>-->
+                        <views:KrilniCentarView x:Name="KrilniCentri"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Centri" Margin="0,194.2,-0.6,-196.2"  HorizontalAlignment="Right" Width="86">
                     <Grid>
-                        <!--<views:CentriView x:Name="Centri"/>-->
+                        <views:CentarView x:Name="Centri"/>
                     </Grid>
                 </TabItem>
             </TabControl>

@@ -67,17 +67,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\BekSuterView.xaml.cs">
+      <DependentUpon>BekSuterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CentarView.xaml.cs">
+      <DependentUpon>CentarView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\KlubView.xaml.cs">
       <DependentUpon>KlubView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\KosarkasView.xaml.cs">
       <DependentUpon>KosarkasView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\KrilniCentarView.xaml.cs">
+      <DependentUpon>KrilniCentarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KriloView.xaml.cs">
+      <DependentUpon>KriloView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\KupView.xaml.cs">
       <DependentUpon>KupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LigaView.xaml.cs">
       <DependentUpon>LigaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlejmejkerView.xaml.cs">
+      <DependentUpon>PlejmejkerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TakmicenjeView.xaml.cs">
       <DependentUpon>TakmicenjeView.xaml</DependentUpon>
@@ -100,6 +115,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\BekSuterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CentarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\KlubView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,11 +131,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\KrilniCentarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\KriloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\KupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LigaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlejmejkerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

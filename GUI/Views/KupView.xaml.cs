@@ -28,6 +28,7 @@ namespace GUI.Views
         KosarkaDbContainerContext _context;
         CollectionViewSource kupViewSource;
         CollectionViewSource takmicenjeViewSource;
+        //static DbSet<Kup> Takmicenjes_Kup = _context.Set<Kup>();
 
         public KupView()
         {
@@ -83,7 +84,6 @@ namespace GUI.Views
 
                     // insert into takmicenja
                     _context.Takmicenjes.Add(kup);
-                    _context.SaveChanges();
                     // insert into kupovi
                     _context.Takmicenjes_Kup.Add(kup);
                     _context.SaveChanges();

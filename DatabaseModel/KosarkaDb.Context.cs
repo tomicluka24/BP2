@@ -26,9 +26,14 @@ namespace DatabaseModel
         }
     
         public virtual DbSet<Takmicenje> Takmicenjes { get; set; }
-        public virtual DbSet<Kup> Takmicenjes_Kup { get; set; }
+        public virtual DbSet<Kup> Takmicenjes_Kup  { get; set; }
         public virtual DbSet<Liga> Takmicenjes_Liga { get; set; }
         public virtual DbSet<Kosarkas> Kosarkas { get; set; }
+        public virtual DbSet<Plejmejker> Kosarkas_Plejmejker { get; set; }
+        public virtual DbSet<BekSuter> Kosarkas_BekSuter { get; set; }
+        public virtual DbSet<Krilo> Kosarkas_Krilo { get; set; }
+        public virtual DbSet<KrilniCentar> Kosarkas_KrilniCentar { get; set; }
+        public virtual DbSet<Centar> Kosarkas_Centar { get; set; }
         public virtual DbSet<Ucestvuje> Ucestvujes { get; set; }
         public virtual DbSet<Trofej> Trofejs { get; set; }
         public virtual DbSet<Klub> Klubs { get; set; }
