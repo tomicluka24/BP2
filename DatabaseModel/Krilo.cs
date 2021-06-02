@@ -14,5 +14,6 @@ namespace DatabaseModel
     
     public partial class Krilo : Kosarkas
     {
+        public int PpgKrila { get; set; }
     }
 }

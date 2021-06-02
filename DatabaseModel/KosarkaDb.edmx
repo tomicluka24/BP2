@@ -111,42 +111,50 @@
     <Key>
       <PropertyRef Name="IdTakmicenja" />
     </Key>
+    <Property Name="BrojDanaTrajanjaKupa" Type="int" Nullable="false" />
     <Property Name="IdTakmicenja" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Takmicenjes_Liga">
     <Key>
       <PropertyRef Name="IdTakmicenja" />
     </Key>
+    <Property Name="BrojKolaLige" Type="int" Nullable="false" />
+    <Property Name="BrojTimovaUPlayOffuLige" Type="int" Nullable="false" />
     <Property Name="IdTakmicenja" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Kosarkas_Plejmejker">
     <Key>
       <PropertyRef Name="IdKosarkasa" />
     </Key>
+    <Property Name="ApgPlejmejkera" Type="int" Nullable="false" />
     <Property Name="IdKosarkasa" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Kosarkas_BekSuter">
     <Key>
       <PropertyRef Name="IdKosarkasa" />
     </Key>
+    <Property Name="TppgBekSutera" Type="int" Nullable="false" />
     <Property Name="IdKosarkasa" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Kosarkas_Krilo">
     <Key>
       <PropertyRef Name="IdKosarkasa" />
     </Key>
+    <Property Name="PpgKrila" Type="int" Nullable="false" />
     <Property Name="IdKosarkasa" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Kosarkas_KrilniCentar">
     <Key>
       <PropertyRef Name="IdKosarkasa" />
     </Key>
+    <Property Name="BpgKrilnogCentra" Type="int" Nullable="false" />
     <Property Name="IdKosarkasa" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Kosarkas_Centar">
     <Key>
       <PropertyRef Name="IdKosarkasa" />
     </Key>
+    <Property Name="RpgCentra" Type="int" Nullable="false" />
     <Property Name="IdKosarkasa" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="TakmicenjeUcestvuje">
@@ -344,13 +352,28 @@
           <NavigationProperty Name="Klub" Relationship="KosarkaDb.KlubKosarkas" FromRole="Kosarkas" ToRole="Klub" />
           <Property Name="Klub_IdKluba" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Kup" BaseType="KosarkaDb.Takmicenje" />
-        <EntityType Name="Liga" BaseType="KosarkaDb.Takmicenje" />
-        <EntityType Name="Plejmejker" BaseType="KosarkaDb.Kosarkas" />
-        <EntityType Name="BekSuter" BaseType="KosarkaDb.Kosarkas" />
-        <EntityType Name="Krilo" BaseType="KosarkaDb.Kosarkas" />
-        <EntityType Name="KrilniCentar" BaseType="KosarkaDb.Kosarkas" />
-        <EntityType Name="Centar" BaseType="KosarkaDb.Kosarkas" />
+        <EntityType Name="Kup" BaseType="KosarkaDb.Takmicenje" >
+          <Property Name="BrojDanaTrajanjaKupa" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Liga" BaseType="KosarkaDb.Takmicenje" >
+          <Property Name="BrojKolaLige" Type="Int32" Nullable="false" />
+          <Property Name="BrojTimovaUPlayOffuLige" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plejmejker" BaseType="KosarkaDb.Kosarkas" >
+          <Property Name="ApgPlejmejkera" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BekSuter" BaseType="KosarkaDb.Kosarkas" >
+          <Property Name="TppgBekSutera" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Krilo" BaseType="KosarkaDb.Kosarkas" >
+          <Property Name="PpgKrila" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KrilniCentar" BaseType="KosarkaDb.Kosarkas" >
+          <Property Name="BpgKrilnogCentra" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Centar" BaseType="KosarkaDb.Kosarkas" >
+          <Property Name="RpgCentra" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="Ucestvuje" >
           <Key>
             <PropertyRef Name="Takmicenje_IdTakmicenja" />
@@ -450,11 +473,14 @@
       <EntityTypeMapping TypeName="IsTypeOf(KosarkaDb.Kup)">
         <MappingFragment StoreEntitySet="Takmicenjes_Kup">
           <ScalarProperty Name="IdTakmicenja" ColumnName="IdTakmicenja" />
+          <ScalarProperty Name="BrojDanaTrajanjaKupa" ColumnName="BrojDanaTrajanjaKupa" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(KosarkaDb.Liga)">
         <MappingFragment StoreEntitySet="Takmicenjes_Liga">
           <ScalarProperty Name="IdTakmicenja" ColumnName="IdTakmicenja" />
+          <ScalarProperty Name="BrojKolaLige" ColumnName="BrojKolaLige" />
+          <ScalarProperty Name="BrojTimovaUPlayOffuLige" ColumnName="BrojTimovaUPlayOffuLige" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -471,26 +497,31 @@
       <EntityTypeMapping TypeName="IsTypeOf(KosarkaDb.Plejmejker)">
         <MappingFragment StoreEntitySet="Kosarkas_Plejmejker">
           <ScalarProperty Name="IdKosarkasa" ColumnName="IdKosarkasa" />
+          <ScalarProperty Name="ApgPlejmejkera" ColumnName="ApgPlejmejkera" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(KosarkaDb.BekSuter)">
         <MappingFragment StoreEntitySet="Kosarkas_BekSuter">
           <ScalarProperty Name="IdKosarkasa" ColumnName="IdKosarkasa" />
+          <ScalarProperty Name="TppgBekSutera" ColumnName="TppgBekSutera" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(KosarkaDb.Krilo)">
         <MappingFragment StoreEntitySet="Kosarkas_Krilo">
           <ScalarProperty Name="IdKosarkasa" ColumnName="IdKosarkasa" />
+          <ScalarProperty Name="PpgKrila" ColumnName="PpgKrila" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(KosarkaDb.KrilniCentar)">
         <MappingFragment StoreEntitySet="Kosarkas_KrilniCentar">
           <ScalarProperty Name="IdKosarkasa" ColumnName="IdKosarkasa" />
+          <ScalarProperty Name="BpgKrilnogCentra" ColumnName="BpgKrilnogCentra" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(KosarkaDb.Centar)">
         <MappingFragment StoreEntitySet="Kosarkas_Centar">
           <ScalarProperty Name="IdKosarkasa" ColumnName="IdKosarkasa" />
+          <ScalarProperty Name="RpgCentra" ColumnName="RpgCentra" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

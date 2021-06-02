@@ -159,7 +159,7 @@ namespace GUI.Views
                 catch (Exception)
                 {
 
-                    MessageBox.Show("Greska pri izmeni klub.", "Error");
+                    MessageBox.Show("Greska pri azuriranju kluba.", "Error");
                     return;
                 }
 

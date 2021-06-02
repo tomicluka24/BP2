@@ -14,5 +14,6 @@ namespace DatabaseModel
     
     public partial class KrilniCentar : Kosarkas
     {
+        public int BpgKrilnogCentra { get; set; }
     }
 }

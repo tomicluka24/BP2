@@ -1,0 +1,62 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.Views"
+             xmlns:DatabaseModel="clr-namespace:DatabaseModel;assembly=DatabaseModel" x:Class="GUI.Views.KupView"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="kupViewSource" d:DesignSource="{d:DesignInstance {x:Type DatabaseModel:Kup}, CreateList=True}"/>
+        <RoutedUICommand x:Key="DeleteCommand" Text="Izbrisi"/>
+        <RoutedUICommand x:Key="UpdateCommand" Text="Izmeni"/>
+        <RoutedUICommand x:Key="AddCommand" Text="Dodaj"/>
+    </UserControl.Resources>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{StaticResource DeleteCommand}" Executed="DeleteCommandHandler"/>
+        <CommandBinding Command="{StaticResource UpdateCommand}" Executed="UpdateCommandHandler"/>
+        <CommandBinding Command="{StaticResource AddCommand}" Executed="AddCommandHandler"/>
+    </UserControl.CommandBindings>
+    <Grid DataContext="{StaticResource kupViewSource}">
+        <DataGrid x:Name="kupDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="147,10,147,305.6" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idTakmicenjaColumn" Width="SizeToHeader" Header="ID takmicenja" Binding="{Binding IdTakmicenja}"/>
+                <DataGridTextColumn x:Name="mestoTakmicenjaColumn" Width="SizeToHeader" Header="Mesto takmicenja" Binding="{Binding MestoTakmicenja}"/>
+                <DataGridTextColumn x:Name="nazivTakmicenjaColumn" Width="SizeToHeader" Header="Naziv takmicenja" Binding="{Binding NazivTakmicenja}"/>
+                <DataGridTextColumn x:Name="brojDanaTrajanjaKupaColumn" Width="SizeToHeader" Header="Broj dana trajanja kupa" Binding="{Binding BrojDanaTrajanjaKupa}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="47,203,0,0" VerticalAlignment="Top" Width="696">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Broj dana trajanja kupa:" Grid.Column="1" HorizontalAlignment="Left" Margin="366.2,2,-384.2,4" VerticalAlignment="Center" Height="26" Width="154"/>
+            <TextBox x:Name="brojDanaTrajanjaKupaTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="525.2,2,-507.6,4" Text="{Binding BrojDanaTrajanjaKupa, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="26"/>
+        </Grid>
+        <StackPanel Orientation="Vertical" Margin="181,377,175,0" Height="63" VerticalAlignment="Top" DataContext="{StaticResource kupViewSource}">
+            <Button x:Name="btnAdd" Content="Dodaj" Command="{StaticResource AddCommand}" FontSize="11" Width="80" Margin="182,0,0,0" RenderTransformOrigin="-1.04,3.83" HorizontalAlignment="Left" />
+            <Button x:Name="btnUpdate" Content="Izmeni" Command="{StaticResource UpdateCommand}" FontSize="11" Width="80" Margin="182,0,0,0" RenderTransformOrigin="1.89,2.375" HorizontalAlignment="Left"/>
+            <Button x:Name="btnDelete" Content="Izbrisi"  Command="{StaticResource DeleteCommand}" FontSize="11" Width="80" Margin="182,0,0,0" Height="19" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <Grid x:Name="grid1_Copy" HorizontalAlignment="Left" Margin="47,263,0,0" VerticalAlignment="Top" Width="696">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Mesto takmicenja:" Grid.Column="1" HorizontalAlignment="Left" Margin="108.2,0,-66.8,6" VerticalAlignment="Center"/>
+            <TextBox x:Name="mestoTakmicenjaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="239.2,0,-204,7" Text="{Binding MestoTakmicenja, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Naziv takmicenja:" Grid.Column="1" HorizontalAlignment="Left" Margin="108.2,-59,-65.4,65" VerticalAlignment="Center" Height="26" Width="110"/>
+            <TextBox x:Name="nazivTakmicenjaTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="239.2,-59,-204.8,65" Text="{Binding NazivTakmicenja, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="26"/>
+        </Grid>
+    </Grid>
+</UserControl>

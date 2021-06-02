@@ -14,5 +14,7 @@ namespace DatabaseModel
     
     public partial class Liga : Takmicenje
     {
+        public int BrojKolaLige { get; set; }
+        public int BrojTimovaUPlayOffuLige { get; set; }
     }
 }

@@ -11,29 +11,64 @@
     <Grid>
         <Grid>
             <TabControl TabStripPlacement="Left" Margin="0, 0, 0, 10">
-                <TabItem Header="Kosarkasi" Margin="0,61,-2.4,-65">
+                <TabItem Header="Kosarkasi" Margin="-2,35,-0.4,-39">
                     <Grid>
                         <views:KosarkasView x:Name="Kosarkasi" Margin="0,0,-0.2,-0.2"></views:KosarkasView>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Klubovi" Margin="0,80,-2.4,-84">
+                <TabItem Header="Klubovi" Margin="-2,-17,-0.4,13">
                     <Grid>
                         <views:KlubView x:Name="Klubovi"></views:KlubView>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Takmicenja" Margin="0,100,-2.4,-104">
+                <TabItem Header="Takmicenja" Margin="-2,31,-0.4,-35">
                     <Grid>
                         <views:TakmicenjeView x:Name="Takmicenja"></views:TakmicenjeView>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Trofeji" Margin="0,119,-2.4,-123">
+                <TabItem Header="Trofeji" Margin="-1,78,1.4,-79.2"  HorizontalAlignment="Right" Width="86">
                     <Grid>
                         <views:TrofejView x:Name="Trofeji"></views:TrofejView>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Ucestvovanja" Margin="0,139,-2.4,-143">
+                <TabItem Header="Ucestvovanja" Margin="-2,26,-0.4,-30">
                     <Grid>
-                        <!--<views:UcestvujeView x:Name="Ucestvovanja"></views:UcestvujeView>-->
+                        <views:UcestvovanjeView x:Name="Ucestvovanja"></views:UcestvovanjeView>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Kupovi" Margin="0,100.8,0.4,-102.8"  HorizontalAlignment="Right" Width="86">
+                    <Grid>
+                        <views:KupView x:Name="Kupovi"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Lige" Margin="0,114,0.4,-116"  HorizontalAlignment="Right" Width="86">
+                    <Grid>
+                        <views:LigaView x:Name="Lige"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Plejmejkeri" Margin="-3,156.8,3.4,-159"  HorizontalAlignment="Right" Width="86">
+                    <Grid>
+                        <!--<views:PlejmejkerView x:Name="Plejmejkeri"/>-->
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Bek suteri" Margin="0,171,0.4,-173"  HorizontalAlignment="Right" Width="86">
+                    <Grid>
+                        <!--<views:BekSuteriView x:Name="BekSuteri"/>-->
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Krila" Margin="0,180,-0.6,-182.2"  HorizontalAlignment="Right" Width="86">
+                    <Grid>
+                        <!--<views:KrilaView x:Name="Krila"/>-->
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Krilni centri" Margin="0,188,0.4,-189"  HorizontalAlignment="Right" Width="86">
+                    <Grid>
+                        <!--<views:KrilniCentriView x:Name="KrilniCentri"/>-->
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Centri" Margin="0,194.2,-0.6,-196.2"  HorizontalAlignment="Right" Width="86">
+                    <Grid>
+                        <!--<views:CentriView x:Name="Centri"/>-->
                     </Grid>
                 </TabItem>
             </TabControl>

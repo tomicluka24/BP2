@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/02/2021 02:15:03
+-- Date Created: 06/02/2021 10:53:56
 -- Generated from EDMX file: C:\Users\tomic\OneDrive\Desktop\BP2\Projekat\Kosarka\DatabaseModel\KosarkaDb.edmx
 -- --------------------------------------------------
 
@@ -141,42 +141,50 @@ GO
 
 -- Creating table 'Takmicenjes_Kup'
 CREATE TABLE [dbo].[Takmicenjes_Kup] (
+    [BrojDanaTrajanjaKupa] int  NOT NULL,
     [IdTakmicenja] int  NOT NULL
 );
 GO
 
 -- Creating table 'Takmicenjes_Liga'
 CREATE TABLE [dbo].[Takmicenjes_Liga] (
+    [BrojKolaLige] int  NOT NULL,
+    [BrojTimovaUPlayOffuLige] int  NOT NULL,
     [IdTakmicenja] int  NOT NULL
 );
 GO
 
 -- Creating table 'Kosarkas_Plejmejker'
 CREATE TABLE [dbo].[Kosarkas_Plejmejker] (
+    [ApgPlejmejkera] int  NOT NULL,
     [IdKosarkasa] int  NOT NULL
 );
 GO
 
 -- Creating table 'Kosarkas_BekSuter'
 CREATE TABLE [dbo].[Kosarkas_BekSuter] (
+    [TppgBekSutera] int  NOT NULL,
     [IdKosarkasa] int  NOT NULL
 );
 GO
 
 -- Creating table 'Kosarkas_Krilo'
 CREATE TABLE [dbo].[Kosarkas_Krilo] (
+    [PpgKrila] int  NOT NULL,
     [IdKosarkasa] int  NOT NULL
 );
 GO
 
 -- Creating table 'Kosarkas_KrilniCentar'
 CREATE TABLE [dbo].[Kosarkas_KrilniCentar] (
+    [BpgKrilnogCentra] int  NOT NULL,
     [IdKosarkasa] int  NOT NULL
 );
 GO
 
 -- Creating table 'Kosarkas_Centar'
 CREATE TABLE [dbo].[Kosarkas_Centar] (
+    [RpgCentra] int  NOT NULL,
     [IdKosarkasa] int  NOT NULL
 );
 GO

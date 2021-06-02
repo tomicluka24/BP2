@@ -14,5 +14,6 @@ namespace DatabaseModel
     
     public partial class Kup : Takmicenje
     {
+        public int BrojDanaTrajanjaKupa { get; set; }
     }
 }

@@ -14,5 +14,6 @@ namespace DatabaseModel
     
     public partial class BekSuter : Kosarkas
     {
+        public int TppgBekSutera { get; set; }
     }
 }

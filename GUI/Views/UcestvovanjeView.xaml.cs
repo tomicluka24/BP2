@@ -18,15 +18,14 @@ using System.Windows.Shapes;
 namespace GUI.Views
 {
     /// <summary>
-    /// Interaction logic for TakmicenjeView.xaml
+    /// Interaction logic for UcestvovanjeView.xaml
     /// </summary>
-    public partial class TakmicenjeView : UserControl
+    public partial class UcestvovanjeView : UserControl
     {
         KosarkaDbContainerContext _context;
-        CollectionViewSource takmicenjeViewSource;
+        CollectionViewSource ucestvovanjeViewSource;
 
-
-        public TakmicenjeView()
+        public UcestvovanjeView()
         {
             InitializeComponent();
         }
@@ -38,7 +37,7 @@ namespace GUI.Views
             if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
             {
                 //Load your data here and assign the result to the CollectionViewSource.
-                takmicenjeViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["takmicenjeViewSource"];
+                ucestvovanjeViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["ucestvovanjeViewSource"];
 
                 // Load is an extension method on IQueryable,
                 // defined in the System.Data.Entity namespace.
@@ -47,68 +46,66 @@ namespace GUI.Views
                 // When used with Linq to Entities this method
                 // creates entity objects and adds them to the context.
                 _context = new KosarkaDbContainerContext();
-                _context.Takmicenjes.Load();
+                _context.Ucestvujes.Load();
 
                 // After the data is loaded call the DbSet<T>.Local property
                 // to use the DbSet<T> as a binding source.
-                takmicenjeViewSource.Source = _context.Takmicenjes.Local;
+                ucestvovanjeViewSource.Source = _context.Ucestvujes.Local;
             }
         }
 
         private void AddCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             _context = new KosarkaDbContainerContext();
-            Takmicenje takmicenje = new Takmicenje();
+            Ucestvuje ucestvovanje = new Ucestvuje();
 
-            if (takmicenje != null)
+            if (ucestvovanje != null)
             {
                 try
                 {
-                    takmicenje.NazivTakmicenja = nazivTakmicenjaTextBox.Text;
-                    takmicenje.MestoTakmicenja = mestoTakmicenjaTextBox.Text;
-                    _context.Takmicenjes.Add(takmicenje);
+                    ucestvovanje.Klub_IdKluba = Convert.ToInt32(idKlubaTextBox.Text);
+                    ucestvovanje.Takmicenje_IdTakmicenja = Convert.ToInt32(idTakmicenjaTextBox.Text);
+                    _context.Ucestvujes.Add(ucestvovanje);
                     _context.SaveChanges();
-                    _context.Takmicenjes.Load();
+                    _context.Ucestvujes.Load();
 
-                    takmicenjeViewSource.Source = _context.Takmicenjes.Local;
-                    takmicenjeViewSource.View.Refresh();
+                    ucestvovanjeViewSource.Source = _context.Ucestvujes.Local;
+                    ucestvovanjeViewSource.View.Refresh();
                 }
                 catch (Exception)
                 {
 
-                    MessageBox.Show("Greska pri dodavanju takmicenje.", "Error");
+                    MessageBox.Show("Greska pri dodavanju ucestvovanja.", "Error");
                     return;
                 }
 
             }
         }
 
-
-
         private void DeleteCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             _context = new KosarkaDbContainerContext();
-            var current = takmicenjeViewSource.View.CurrentItem as Takmicenje;
+            var current = ucestvovanjeViewSource.View.CurrentItem as Ucestvuje;
 
-            var takmicenje = (from c in _context.Takmicenjes
-                        where c.IdTakmicenja == current.IdTakmicenja
-                        select c).FirstOrDefault();
+            var ucestvuje = (from c in _context.Ucestvujes
+                              where c.Klub_IdKluba == current.Klub_IdKluba && c.Takmicenje_IdTakmicenja == current.Takmicenje_IdTakmicenja
+                              select c).FirstOrDefault();
 
-            if (takmicenje != null)
+            if (ucestvuje != null)
             {
                 try
                 {
-                    _context.Takmicenjes.Remove(takmicenje);
+                    _context.Ucestvujes.Remove(ucestvuje);
                     _context.SaveChanges();
-                    _context.Takmicenjes.Load();
+                    _context.Ucestvujes.Load();
 
-                    takmicenjeViewSource.Source = _context.Takmicenjes.Local;
-                    takmicenjeViewSource.View.Refresh();
+                    ucestvovanjeViewSource.Source = _context.Ucestvujes.Local;
+                    ucestvovanjeViewSource.View.Refresh();
                 }
                 catch (Exception)
                 {
 
-                    MessageBox.Show("Greska pri brisanju takmicenja.", "Error");
+                    MessageBox.Show("Greska pri brisanju ucestvovanja.", "Error");
                     return;
                 }
 
@@ -119,28 +116,29 @@ namespace GUI.Views
         private void UpdateCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             _context = new KosarkaDbContainerContext();
-            var current = takmicenjeViewSource.View.CurrentItem as Takmicenje;
+            var current = ucestvovanjeViewSource.View.CurrentItem as Ucestvuje;
 
-            var takmicenje = (from c in _context.Takmicenjes
-                        where c.IdTakmicenja == current.IdTakmicenja
-                        select c).FirstOrDefault();
+            var ucestvuje = (from c in _context.Ucestvujes
+                             where c.Klub_IdKluba == current.Klub_IdKluba && c.Takmicenje_IdTakmicenja == current.Takmicenje_IdTakmicenja
+                             select c).FirstOrDefault();
 
-            if (takmicenje != null)
+            if (ucestvuje != null)
             {
                 try
                 {
-                    takmicenje.NazivTakmicenja = nazivTakmicenjaTextBox.Text;
-                    takmicenje.MestoTakmicenja = mestoTakmicenjaTextBox.Text;
+                    ucestvuje.Klub_IdKluba = Convert.ToInt32(idKlubaTextBox.Text);
+                    ucestvuje.Takmicenje_IdTakmicenja = Convert.ToInt32(idTakmicenjaTextBox.Text);
+
                     _context.SaveChanges();
                     _context.Takmicenjes.Load();
 
-                    takmicenjeViewSource.Source = _context.Takmicenjes.Local;
-                    takmicenjeViewSource.View.Refresh();
+                    ucestvovanjeViewSource.Source = _context.Ucestvujes.Local;
+                    ucestvovanjeViewSource.View.Refresh();
                 }
                 catch (Exception)
                 {
 
-                    MessageBox.Show("Greska pri azuriranju takmicenja.", "Error");
+                    MessageBox.Show("Greska pri azuriranju ucestvovanja.", "Error");
                     return;
                 }
 

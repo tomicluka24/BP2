@@ -14,5 +14,6 @@ namespace DatabaseModel
     
     public partial class Plejmejker : Kosarkas
     {
+        public int ApgPlejmejkera { get; set; }
     }
 }

@@ -14,5 +14,6 @@ namespace DatabaseModel
     
     public partial class Centar : Kosarkas
     {
+        public int RpgCentra { get; set; }
     }
 }

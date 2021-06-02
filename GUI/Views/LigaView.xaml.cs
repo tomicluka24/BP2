@@ -18,18 +18,18 @@ using System.Windows.Shapes;
 namespace GUI.Views
 {
     /// <summary>
-    /// Interaction logic for TakmicenjeView.xaml
+    /// Interaction logic for LigaView.xaml
     /// </summary>
-    public partial class TakmicenjeView : UserControl
+    public partial class LigaView : UserControl
     {
+
         KosarkaDbContainerContext _context;
-        CollectionViewSource takmicenjeViewSource;
-
-
-        public TakmicenjeView()
+        CollectionViewSource ligaViewSource;
+        public LigaView()
         {
             InitializeComponent();
         }
+
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -38,7 +38,7 @@ namespace GUI.Views
             if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
             {
                 //Load your data here and assign the result to the CollectionViewSource.
-                takmicenjeViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["takmicenjeViewSource"];
+                ligaViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["ligaViewSource"];
 
                 // Load is an extension method on IQueryable,
                 // defined in the System.Data.Entity namespace.
@@ -51,14 +51,18 @@ namespace GUI.Views
 
                 // After the data is loaded call the DbSet<T>.Local property
                 // to use the DbSet<T> as a binding source.
-                takmicenjeViewSource.Source = _context.Takmicenjes.Local;
+                ligaViewSource.Source = _context.Takmicenjes.Local;
             }
         }
+
+
+
 
         private void AddCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             _context = new KosarkaDbContainerContext();
             Takmicenje takmicenje = new Takmicenje();
+            Liga liga = new Liga();
 
             if (takmicenje != null)
             {
@@ -66,12 +70,20 @@ namespace GUI.Views
                 {
                     takmicenje.NazivTakmicenja = nazivTakmicenjaTextBox.Text;
                     takmicenje.MestoTakmicenja = mestoTakmicenjaTextBox.Text;
+
+                    liga.BrojKolaLige = Convert.ToInt32(brojKolaLigeTextBox.Text);
+                    liga.BrojTimovaUPlayOffuLige = Convert.ToInt32(brojTimovaUPlayOffuLigeTextBox.Text);
+
+                    // insert into takmicenja
                     _context.Takmicenjes.Add(takmicenje);
                     _context.SaveChanges();
                     _context.Takmicenjes.Load();
 
-                    takmicenjeViewSource.Source = _context.Takmicenjes.Local;
-                    takmicenjeViewSource.View.Refresh();
+                    ligaViewSource.Source = _context.Takmicenjes.Local;
+                    ligaViewSource.View.Refresh();
+
+                    // insert into ligaovi
+
                 }
                 catch (Exception)
                 {
@@ -88,11 +100,11 @@ namespace GUI.Views
         private void DeleteCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             _context = new KosarkaDbContainerContext();
-            var current = takmicenjeViewSource.View.CurrentItem as Takmicenje;
+            var current = ligaViewSource.View.CurrentItem as Takmicenje;
 
             var takmicenje = (from c in _context.Takmicenjes
-                        where c.IdTakmicenja == current.IdTakmicenja
-                        select c).FirstOrDefault();
+                              where c.IdTakmicenja == current.IdTakmicenja
+                              select c).FirstOrDefault();
 
             if (takmicenje != null)
             {
@@ -102,8 +114,8 @@ namespace GUI.Views
                     _context.SaveChanges();
                     _context.Takmicenjes.Load();
 
-                    takmicenjeViewSource.Source = _context.Takmicenjes.Local;
-                    takmicenjeViewSource.View.Refresh();
+                    ligaViewSource.Source = _context.Takmicenjes.Local;
+                    ligaViewSource.View.Refresh();
                 }
                 catch (Exception)
                 {
@@ -114,16 +126,17 @@ namespace GUI.Views
 
             }
 
+
         }
 
         private void UpdateCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             _context = new KosarkaDbContainerContext();
-            var current = takmicenjeViewSource.View.CurrentItem as Takmicenje;
+            var current = ligaViewSource.View.CurrentItem as Takmicenje;
 
             var takmicenje = (from c in _context.Takmicenjes
-                        where c.IdTakmicenja == current.IdTakmicenja
-                        select c).FirstOrDefault();
+                              where c.IdTakmicenja == current.IdTakmicenja
+                              select c).FirstOrDefault();
 
             if (takmicenje != null)
             {
@@ -134,8 +147,8 @@ namespace GUI.Views
                     _context.SaveChanges();
                     _context.Takmicenjes.Load();
 
-                    takmicenjeViewSource.Source = _context.Takmicenjes.Local;
-                    takmicenjeViewSource.View.Refresh();
+                    ligaViewSource.Source = _context.Takmicenjes.Local;
+                    ligaViewSource.View.Refresh();
                 }
                 catch (Exception)
                 {
@@ -145,7 +158,6 @@ namespace GUI.Views
                 }
 
             }
-
         }
     }
 }

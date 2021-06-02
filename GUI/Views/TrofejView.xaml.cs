@@ -55,6 +55,37 @@ namespace GUI.Views
             }
         }
 
+        private void AddCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            _context = new KosarkaDbContainerContext();
+            Trofej trofej = new Trofej();
+
+            if (trofej != null)
+            {
+                try
+                {
+                    trofej.UcestvujeKlub_IdKluba = Convert.ToInt32(idKlubaTextBox.Text);
+                    trofej.UcestvujeTakmicenje_IdTakmicenja = Convert.ToInt32(idTakmicenjaTextBox.Text);
+                    _context.Trofejs.Add(trofej);
+                    _context.SaveChanges();
+                    _context.Trofejs.Load();
+
+                    trofejViewSource.Source = _context.Trofejs.Local;
+                    trofejViewSource.View.Refresh();
+
+
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("Greska pri izmeni trofeja.", "Error");
+                    return;
+                }
+
+            }
+
+        }
+
         private void DeleteCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             _context = new KosarkaDbContainerContext();
@@ -88,7 +119,6 @@ namespace GUI.Views
 
         }
 
-        // dopuni
         private void UpdateCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             _context = new KosarkaDbContainerContext();
@@ -102,7 +132,8 @@ namespace GUI.Views
             {
                 try
                 {
-                    trofej.IdTrofeja = Convert.ToInt32(idTrofejaTextBox.Text);
+                    trofej.UcestvujeKlub_IdKluba = Convert.ToInt32(idKlubaTextBox.Text);
+                    trofej.UcestvujeTakmicenje_IdTakmicenja = Convert.ToInt32(idTakmicenjaTextBox.Text);
                     _context.SaveChanges();
                     _context.Trofejs.Load();
 
@@ -114,7 +145,7 @@ namespace GUI.Views
                 catch (Exception)
                 {
 
-                    MessageBox.Show("Trenutno nije moguce izmeniti trofej.", "Error");
+                    MessageBox.Show("Greska pri azuriranju trofeja.", "Error");
                     return;
                 }
 
@@ -122,36 +153,7 @@ namespace GUI.Views
 
         }
 
-        // dopuni
-        private void AddCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-            _context = new KosarkaDbContainerContext();
-            Trofej trofej = new Trofej();
-
-            if (trofej != null)
-            {
-                try
-                {
-                    trofej.IdTrofeja = Convert.ToInt32(idTrofejaTextBox.Text);
-                    _context.Trofejs.Add(trofej);
-                    _context.SaveChanges();
-                    _context.Trofejs.Load();
-
-                    trofejViewSource.Source = _context.Trofejs.Local;
-                    trofejViewSource.View.Refresh();
-
-
-                }
-                catch (Exception)
-                {
-
-                    MessageBox.Show("Trenutno nije moguce dodati trofej.", "Error");
-                    return;
-                }
-
-            }
-
-        }
+       
 
     }
 }

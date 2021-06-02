@@ -21,9 +21,9 @@
     <Grid DataContext="{StaticResource trofejViewSource}">
         <DataGrid x:Name="trofejDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="147,10,147,305.6" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idTrofejaColumn" Width="SizeToHeader" Header="ID trofeja" Binding="{Binding idTrofeja}"/>
-                <DataGridTextColumn x:Name="idTakmicenjaColumn" Width="SizeToHeader" Header="ID takmicenja" Binding="{Binding idTakmicenja}"/>
-                <DataGridTextColumn x:Name="idKlubaColumn" Width="SizeToHeader" Header="ID kluba" Binding="{Binding idKluba}"/>
+                <DataGridTextColumn x:Name="idTrofejaColumn" Width="SizeToHeader" Header="ID trofeja" Binding="{Binding IdTrofeja}"/>
+                <DataGridTextColumn x:Name="idTakmicenjaColumn" Width="SizeToHeader" Header="ID takmicenja" Binding="{Binding UcestvujeTakmicenje_IdTakmicenja}"/>
+                <DataGridTextColumn x:Name="idKlubaColumn" Width="SizeToHeader" Header="ID kluba" Binding="{Binding UcestvujeKlub_IdKluba}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="47,203,0,0" VerticalAlignment="Top" Width="696">
@@ -35,12 +35,10 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="ID trofeja:" Grid.Column="1" HorizontalAlignment="Left" Margin="111.2,2,-61.2,4" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="idTrofejaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="206.2,2,-198.2,7" Grid.Row="0" Text="{Binding idTrofeja, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="ID takmicenja:" Grid.Column="1" HorizontalAlignment="Left" Margin="111,6,-71,0" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="idTakmicenjaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="206.2,4,-198.2,3" Grid.Row="1" Text="{Binding idTakmicenja, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="ID kluba:" Grid.Column="1" HorizontalAlignment="Left" Margin="348.2,5,-330.2,1" VerticalAlignment="Center" Height="26" Width="110"/>
-            <TextBox x:Name="idKlubaTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="481.2,2,-473.2,4" Text="{Binding idKluba, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="26"/>
+            <Label Content="ID takmicenja:" Grid.Column="1" HorizontalAlignment="Left" Margin="129.2,2,-84.4,4" VerticalAlignment="Center"/>
+            <TextBox x:Name="idTakmicenjaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="219.2,0,-208.8,7" Text="{Binding UcestvujeTakmicenje_IdTakmicenja, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="ID kluba:" Grid.Column="1" HorizontalAlignment="Left" Margin="366.2,2,-345,4" VerticalAlignment="Center" Height="26" Width="110"/>
+            <TextBox x:Name="idKlubaTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="429.2,0,-416.4,6" Text="{Binding UcestvujeKlub_IdKluba, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="26"/>
         </Grid>
         <StackPanel Orientation="Vertical" Margin="181,377,175,0" Height="63" VerticalAlignment="Top" DataContext="{StaticResource trofejViewSource}">
             <Button x:Name="btnAdd" Content="Dodaj" Command="{StaticResource AddCommand}" FontSize="11" Width="80" Margin="182,0,0,0" RenderTransformOrigin="-1.04,3.83" HorizontalAlignment="Left" />

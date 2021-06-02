@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Xml" />
@@ -72,14 +73,20 @@
     <Compile Include="Views\KosarkasView.xaml.cs">
       <DependentUpon>KosarkasView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\KupView.xaml.cs">
+      <DependentUpon>KupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LigaView.xaml.cs">
+      <DependentUpon>LigaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TakmicenjeView.xaml.cs">
       <DependentUpon>TakmicenjeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TrofejView.xaml.cs">
       <DependentUpon>TrofejView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UcestvujeView.xaml.cs">
-      <DependentUpon>UcestvujeView.xaml</DependentUpon>
+    <Compile Include="Views\UcestvovanjeView.xaml.cs">
+      <DependentUpon>UcestvovanjeView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -101,6 +108,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\KupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LigaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TakmicenjeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,7 +124,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UcestvujeView.xaml">
+    <Page Include="Views\UcestvovanjeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -145,7 +145,7 @@ namespace GUI.Views
                 catch (Exception)
                 {
 
-                    MessageBox.Show("Trenutno nije moguce izmeniti kosarkasa.", "Error");
+                    MessageBox.Show("Greska pri azuriranju kosarkasa.", "Error");
                     return;
                 }
 
